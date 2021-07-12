@@ -5,9 +5,9 @@ from tensorflow.keras.layers import Conv3D, MaxPooling3D, UpSampling3D, Activati
 K.set_image_data_format("channels_first")
 
 try:
-    from keras.engine import merge
+    from tensorflow.keras.engine import merge
 except ImportError:
-    from keras.layers.merge import concatenate
+    from tensorflow.keras.layers import concatenate
 
 
 def unet_model_3d(input_shape, pool_size=(2, 2, 2), n_labels=1, deconvolution=False,
