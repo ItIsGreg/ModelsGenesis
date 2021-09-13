@@ -7,7 +7,7 @@ class models_genesis_config:
     exp_name = model + "-" + suffix
     
     # data
-    data = "/mnt/dataset/shared/zongwei/LUNA16/Self_Learning_Cubes"
+    data = "/home/gregor/Desktop/doktorarbeit/src/third_party/ModelsGenesis/generated_cubes"
     train_fold=[0,1,2,3,4]
     valid_fold=[5,6]
     test_fold=[7,8,9]
@@ -24,7 +24,7 @@ class models_genesis_config:
     weights = None
     batch_size = 6
     optimizer = "sgd"
-    workers = 10
+    workers = 6
     max_queue_size = workers * 4
     save_samples = "png"
     nb_epoch = 10000

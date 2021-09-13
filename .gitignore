@@ -139,3 +139,5 @@ cython_debug/
 
 # weights downloaded
 pretrained_weights/
+generated_cubes/
+pair_samples/

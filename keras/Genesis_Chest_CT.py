@@ -32,6 +32,18 @@ conf = models_genesis_config()
 conf.display()
 
 
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+  try:
+    # Currently, memory growth needs to be the same across GPUs
+    for gpu in gpus:
+      tf.config.experimental.set_memory_growth(gpu, True)
+    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+  except RuntimeError as e:
+    # Memory growth must be set before GPUs have been initialized
+    print(e)
+
 # # Load subvolumes for self-supervised learning
 
 # In[2]:
@@ -39,14 +51,14 @@ conf.display()
 
 x_train = []
 for i,fold in enumerate(tqdm(conf.train_fold)):
-    file_name = "bat_"+str(conf.scale)+"_s_"+str(conf.input_rows)+"x"+str(conf.input_cols)+"x"+str(conf.input_deps)+"_"+str(fold)+".npy"
+    file_name = "bat_"+str(conf.scale)+"_"+str(conf.input_rows)+"x"+str(conf.input_cols)+"x"+str(conf.input_deps)+"_"+str(fold)+".npy"
     s = np.load(os.path.join(conf.data, file_name))
     x_train.extend(s)
 x_train = np.expand_dims(np.array(x_train), axis=1)
 
 x_valid = []
 for i,fold in enumerate(tqdm(conf.valid_fold)):
-    file_name = "bat_"+str(conf.scale)+"_s_"+str(conf.input_rows)+"x"+str(conf.input_cols)+"x"+str(conf.input_deps)+"_"+str(fold)+".npy"
+    file_name = "bat_"+str(conf.scale)+"_"+str(conf.input_rows)+"x"+str(conf.input_cols)+"x"+str(conf.input_deps)+"_"+str(fold)+".npy"
     s = np.load(os.path.join(conf.data, file_name))
     x_valid.extend(s)
 x_valid = np.expand_dims(np.array(x_valid), axis=1)
