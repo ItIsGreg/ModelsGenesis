@@ -14,9 +14,9 @@ class models_genesis_config:
     hu_min = -1000.0
     hu_max = 1000.0
     scale = 32
-    input_rows = 64
-    input_cols = 64
-    input_deps = 32
+    input_rows = 128
+    input_cols = 128
+    input_deps = 64
     nb_class = 1
     
     # model pre-training
@@ -24,7 +24,7 @@ class models_genesis_config:
     weights = None
     batch_size = 6
     optimizer = "sgd"
-    workers = 6
+    workers = 8
     max_queue_size = workers * 4
     save_samples = "png"
     nb_epoch = 10000
