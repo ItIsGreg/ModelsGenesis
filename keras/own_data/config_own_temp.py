@@ -27,7 +27,7 @@ class models_genesis_config:
     )
     
     vol_path = (
-        'mnt/'
+        '/mnt/'
         + 'vol_'
         + resoltuion_string
     )
