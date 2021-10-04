@@ -7,16 +7,18 @@ class models_genesis_config:
     suffix = "genesis_stroke_cta"
     exp_name = model + "-" + suffix
     
+  
+    
     # train_fold=[0,1,2,3,4]
     # valid_fold=[5,6]
     # test_fold=[7,8,9]
     # hu_min = -1000.0
     # hu_max = 1000.0
     # scale = 32
-
-    input_rows = 128
-    input_cols = 128
-    input_deps = 64
+    
+    input_rows = 256
+    input_cols = 256
+    input_deps = 256
     nb_class = 1
 
     # data

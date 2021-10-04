@@ -13,12 +13,12 @@ class models_genesis_config:
     # hu_min = -1000.0
     # hu_max = 1000.0
     # scale = 32
-
-    input_rows = 128
-    input_cols = 128
-    input_deps = 64
+    
+    input_rows = 256
+    input_cols = 256
+    input_deps = 128
     nb_class = 1
-
+    
     # data
     data = (
         'mnt/'
