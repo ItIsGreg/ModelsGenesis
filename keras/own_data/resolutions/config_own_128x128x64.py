@@ -61,7 +61,7 @@ class models_genesis_config:
     model_path = (
         vol_path
         + '/pretrain_results'
-        + '/pretraining'
+        + '/pretraining_'
         + str(timestamp))
 
     if not os.path.exists(model_path):
