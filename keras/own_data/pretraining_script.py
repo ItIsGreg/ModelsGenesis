@@ -59,8 +59,8 @@ if gpus:
 # Load data
 train_files = os.listdir(conf.data_train)
 val_files = os.listdir(conf.data_val)
-train_paths = [os.path.join(conf.data, file) for file in train_files]
-val_paths = [os.path.join(conf.data, file) for file in val_files]
+train_paths = [os.path.join(conf.data_train, file) for file in train_files]
+val_paths = [os.path.join(conf.data_val, file) for file in val_files]
 
 x_train = []
 for path in train_paths:
