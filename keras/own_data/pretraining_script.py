@@ -39,7 +39,7 @@ conf = cli_config.models_genesis_config()
 conf.display()
 
 # Save config for replicability
-outfile = open(os.path.join(conf.model_path, 'config'))
+outfile = open(os.path.join(conf.model_path, 'config'), 'wb')
 pickle.dump(conf, outfile)
 outfile.close()
 
