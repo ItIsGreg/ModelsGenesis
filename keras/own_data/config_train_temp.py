@@ -28,7 +28,8 @@ class models_genesis_config:
     )
 
     # data
-    cutoff = ''
+    db_extract = os.path.join(vol_path, 'export_18082021_reduced.xlsx')
+    cutoff = 13
     data = os.path.join(vol_path, 'data')
     data_train = os.path.join(data, 'train')
     data_val = os.path.join(data, 'val')

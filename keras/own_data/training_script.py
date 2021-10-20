@@ -2,16 +2,18 @@ from email.policy import default
 import imp
 from pydoc import cli
 import keras
+from matplotlib.pyplot import axis
 from ModelsGenesis.keras.unet3d import *
 from keras.layers import GlobalAveragePooling3D, Dense
 from keras.callbacks import LambdaCallback, TensorBoard, ReduceLROnPlateau
 from keras.utils import to_categorical
-from preprocessing import data_container as dc
+from preprocessing.utils import split_by_cutoff
 import os
 import tensorflow as tf
 from optparse import OptionParser
 import importlib
 import pickle
+import pandas as pd
 
 
 # specify config from CLI
@@ -39,42 +41,36 @@ if gpus:
     except RuntimeError as e:
         print(e)
 
-data = dc.data_container()
+##################
+# DATA LOADING v
+##################
+db_extract = pd.read_excel(conf.db_extract)
 
-########################
-# MOVE TO CONFIG
-########################
-base_path = ''
-filename_x_train = ''
-filename_y_train = ''
-filename_x_val = ''
-filename_y_val = ''
+train_0_paths, train_1_paths = split_by_cutoff(cutoff=conf.cutoff, src_dir=conf.data_train, db_extract=db_extract)
+val_0_paths, val_1_paths = split_by_cutoff(cutoff=conf.cutoff, src_dir=conf.data_val, db_extract=db_extract)
 
-path_x_train = os.path.join()
-path_y_train = os.path.join()
-path_x_val = os.path.join()
-path_y_val = os.path.join()
-########################
+label_train_0 = np.array([0 for _ in range(len(train_0_paths))])
+label_train_1 = np.array([1 for _ in range(len(train_1_paths))])
+label_val_0 = np.array([0 for _ in range(len(val_0_paths))])
+label_val_1 = np.array([1 for _ in range(len(val_1_paths))])
+label_train = np.concatenate((label_train_0, label_train_1), axis=0)
+label_val = np.concatenate((label_val_0, label_val_1), axis=0)
 
-# load in preprocessed files
-data.load_preprocessed(
-    path_x_train,
-    path_y_train,
-    path_x_val,
-    path_y_val
-)
+train_paths = train_0_paths + train_1_paths
+val_paths = val_0_paths + val_1_paths
 
-# make labels one hot encoded
-data.y_train = to_categorical(data.y_train)
-data.y_val = to_categorical(data.y_val)
+X = np.array([np.load(scan) for scan in train_paths])
+x_val = np.array([np.load(scan) for scan in val_paths])
+X = np.expand_dims(X, axis=1)
+x_val = np.expand_dims(x_val, axis=1)
 
-# add a dimension 
-data.x_train = np.expand_dims(data.x_train, axis=1)
-data.y_train = np.expand_dims(data.x_val, axis=1)
+y = to_categorical(label_train)
+y_val = to_categorical(label_val)
 
-X = data.x_train
-y = data.y_train
-validation_data = (data.x_val, data.y_val)
+validation_data = (x_val, y_val)
+##################
+# DATA LOADING ^
+##################
 
 
 ########################
@@ -98,4 +94,4 @@ output = Dense(conf.nb_class, activation=conf.activate)(x)
 model = keras.models.Model(inputs=models_genesis.input, outputs=output)
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
-model.fit(X,y, batch_size='', epochs='', shuffle=True, validation_data=validation_data)
+model.fit(X,y, batch_size=conf.batch_size, epochs=conf.nb_epochs, shuffle=True, validation_data=validation_data)
