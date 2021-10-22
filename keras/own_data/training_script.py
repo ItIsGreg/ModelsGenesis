@@ -58,6 +58,8 @@ if gpus:
 ##################
 # DATA LOADING v
 ##################
+print('Start loading data...')
+
 db_extract = pd.read_excel(conf.db_extract)
 
 train_0_paths, train_1_paths = split_by_cutoff(cutoff=conf.cutoff, src_dir=conf.data_train, db_extract=db_extract)
