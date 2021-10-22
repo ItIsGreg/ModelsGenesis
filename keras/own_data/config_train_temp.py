@@ -12,7 +12,7 @@ class models_genesis_config:
 
     input_rows = 128
     input_cols = 128
-    input_deps = 64
+    input_deps = 128
     nb_class = 2
 
     resolution_string = (
