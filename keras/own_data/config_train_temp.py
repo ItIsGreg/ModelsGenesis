@@ -23,7 +23,7 @@ class models_genesis_config:
 
     vol_path = (
         '/mnt/'
-        + 'vol/'
+        + 'vol_'
         + resolution_string
     )
 
