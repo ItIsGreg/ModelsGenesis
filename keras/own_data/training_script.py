@@ -81,6 +81,11 @@ x_val = np.expand_dims(x_val, axis=1)
 y = to_categorical(label_train)
 y_val = to_categorical(label_val)
 
+print('Shape X: ' + str(X.shape))
+print('Shape y: ' + str(y.shape))
+print('Shape x_val: ' + str(x_val.shape))
+print('Shape y_val: ' + str(y_val.shape))
+
 validation_data = (x_val, y_val)
 ##################
 # DATA LOADING ^
