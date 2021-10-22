@@ -135,7 +135,7 @@ tbCallBack.set_model(model)
 early_stopping = keras.callbacks.EarlyStopping(
     monitor='val_loss',
     patience=conf.patience,
-    verbos=0,
+    verbose=0,
     mode='min',
     )
 
