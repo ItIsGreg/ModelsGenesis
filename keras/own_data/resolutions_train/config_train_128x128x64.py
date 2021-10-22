@@ -51,8 +51,8 @@ class models_genesis_config:
     timestamp = datetime.now()
     model_path = (
         vol_path
-        + 'train_results'
-        + 'train'
+        + '/train_results'
+        + '/training_'
         + str(timestamp)
     )
     if not os.path.exists(model_path):
