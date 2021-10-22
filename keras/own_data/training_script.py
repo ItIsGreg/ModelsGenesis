@@ -165,7 +165,7 @@ while conf.batch_size > 1:
         model.fit(
             X,y,
             batch_size=conf.batch_size,
-            epochs=conf.nb_epochs,
+            epochs=conf.nb_epoch,
             shuffle=True,
             validation_data=validation_data,
             callbacks=callbacks,
