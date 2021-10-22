@@ -33,7 +33,6 @@ class models_genesis_config:
     db_extract = os.path.join(data, 'export_18082021_reduced.xlsx')
     data_train = os.path.join(data, 'train')
     data_val = os.path.join(data, 'val')
-    db_extract = os.path.join(data, '')
 
     # hyperparameter
     verbose = 1
