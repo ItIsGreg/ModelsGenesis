@@ -96,7 +96,7 @@ validation_data = (x_val, y_val)
 ##################
 # MODEL SETUP v
 ##################
-models_genesis = unet_model_3d(input_shape=(conf.input_rows, conf.input_cols, conf.input_deps), batch_normalization=True)
+models_genesis = unet_model_3d(input_shape=(conf.input_channels ,conf.input_rows, conf.input_cols, conf.input_deps), batch_normalization=True)
 if conf.weights is not None:
     print('Load pre-trained Models Genesis weights from {}'.format(conf.weights))
     models_genesis.load_weights(conf.weights)

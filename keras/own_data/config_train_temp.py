@@ -10,6 +10,7 @@ class models_genesis_config:
     suffix = 'genesis_stroke_cta'
     exp_name = model + '-' + suffix
 
+    input_channels = 1
     input_rows = 128
     input_cols = 128
     input_deps = 64
