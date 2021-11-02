@@ -37,7 +37,7 @@ class models_genesis_config:
 
     # hyperparameter
     verbose = 1
-    weights = None
+    weights = '/mnt/vol_128x128x128/pretrain_results/pretraining_2021-10-05 09:01:59.599800/Vnet-genesis_stroke_cta.h5'
     batch_size = 6
     activate = 'softmax'
     optimizer = 'adam'
