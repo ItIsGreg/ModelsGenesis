@@ -87,7 +87,7 @@ model.to(device)
 
 print('Total CUDA devices: ', torch.cuda.device_count())
 
-summary(model, (1, conf.input_rows,conf.input_cols, conf.input_deps), batch_size=-1)
+summary(model, (1, conf.input_rows,conf.input_cols, conf.input_deps), batch_size=conf.batch_size)
 criterion = nn.MSELoss()
 
 if conf.optimizer == 'sgd':
