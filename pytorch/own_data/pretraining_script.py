@@ -18,7 +18,6 @@ from optparse import OptionParser
 import importlib
 import shutil
 import pickle
-from torch import autocast
 
 ##################
 # OPTION PARSING v
@@ -135,7 +134,7 @@ for epoch in range(initial_epoch, conf.nb_epoch):
         gt = np.repeat(gt, conf.nb_class, axis=1)
         image, gt = torch.from_numpy(image).float().to(device), torch.from_numpy(gt).float().to(device)
 
-        with autocast():
+        with torch.cuda.amp.autocast():
             pred=model(image)
             loss = criterion(pred, gt)
         
