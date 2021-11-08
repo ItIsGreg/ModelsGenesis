@@ -44,7 +44,7 @@ class models_genesis_config:
     # hyperparameter
     verbose = 1
     weights = None
-    batch_size = 6
+    batch_size = 1
     activate = 'softmax'
     optimizer = 'adam'
     loss = 'binary_crossentropy'
