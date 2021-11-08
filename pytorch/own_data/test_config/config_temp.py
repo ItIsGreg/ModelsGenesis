@@ -51,7 +51,7 @@ class models_genesis_config:
     metrics = ['acc']
     nb_epoch = 1000
     patience = 50
-    lr = 1e-1
+    lr = 1e0
     mixed_precision = False
 
     # logs
