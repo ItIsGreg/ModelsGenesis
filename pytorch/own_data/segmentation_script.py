@@ -143,7 +143,7 @@ for epoch in range(initial_epoch, conf.nb_epoch):
             x,y = x.float().to(device), y.float().to(device)
             pred = model(x)
             loss = criterion(pred, y)
-            valid_losses.append(loss.item)
+            valid_losses.append(round(loss.item(),2))
 
     ##################
     # LOGGING v
