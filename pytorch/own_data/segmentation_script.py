@@ -90,7 +90,7 @@ summary(model, (1, conf.input_rows,conf.input_cols, conf.input_deps), batch_size
 
 criterion = torch_dice_coef_loss
 optimizer = torch.optim.SGD(model.parameters(), conf.lr, momentum=0.9, weight_decay=0.0, nesterov=False)
-scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=int(conf.patience * 0.8), gamma=0.5)
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.5)
 
 # to track the training loss as the model trains
 train_losses = []
