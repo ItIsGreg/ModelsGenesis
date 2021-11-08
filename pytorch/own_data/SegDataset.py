@@ -17,8 +17,15 @@ class SegDataset(Dataset):
     def __getitem__(self, idx):
         original_path = os.path.join(self.originals_dir, self.ids[idx])
         segmentation_path = os.path.join(self.segmentations_dir, self.ids[idx])
-        original = torch.from_numpy(np.load(original_path))
-        segmentation = torch.from_numpy(np.load(segmentation_path))
+        
+        original = np.load(original_path)
+        original = np.expand_dims(original, axis=0)
+        original = torch.from_numpy(original)
+
+        segmentation = np.load(segmentation_path)
+        segmentation = np.expand_dims(segmentation, axis=0)
+        segmentation = torch.from_numpy(segmentation)
+
         if self.transform:
             original = self.transform(original)
         if self.target_transfrom:
